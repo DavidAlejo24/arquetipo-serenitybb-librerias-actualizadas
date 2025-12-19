@@ -7,18 +7,17 @@ import io.cucumber.java.en.When;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.ensure.Ensure;
 import net.serenitybdd.screenplay.questions.page.TheWebPage;
-import starter.navigation.NavigateTo;
+import starter.navigation.NavegarHacia;
 import starter.search.LookForInformation;
 
 import java.awt.*;
-import java.io.File;
 import java.io.IOException;
 
 public class SearchStepDefinitions {
 
     @Given("{actor} is researching things on the internet")
     public void researchingThings(Actor actor) {
-        actor.wasAbleTo(NavigateTo.theSearchHomePage());
+        actor.wasAbleTo(NavegarHacia.theSearchHomePage());
     }
 
     @When("{actor} looks up {string}")

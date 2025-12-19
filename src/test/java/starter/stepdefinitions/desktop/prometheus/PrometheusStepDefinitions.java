@@ -1,20 +1,13 @@
-package starter.stepdefinitions;
+package starter.stepdefinitions.desktop.prometheus;
 
 import io.cucumber.java.en.Given;
 import net.serenitybdd.screenplay.Actor;
-import tasks.AbrirBrowser;
+import tasks.desktop.prometheus.AbrirBrowser;
 
 public class PrometheusStepDefinitions {
 
     @Given("{actor} open the browser")
     public void abreChrome(Actor actor) {
-        /*
-        try {
-            sikulixExample.main(); // Call the SikuliX example to open the browser
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-         */
         actor.attemptsTo(
                 AbrirBrowser.Chrome()
         );

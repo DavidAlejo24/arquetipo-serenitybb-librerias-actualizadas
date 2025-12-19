@@ -1,5 +1,15 @@
 defaultTasks 'clean', 'test', 'aggregate'
 
+configurations.all {
+    exclude group: 'com.tigervnc', module: 'tigervnc'
+    exclude group: "log4j", module: "log4j"
+    //exclude group: "sikulix", module: "sikulix2tigervnc"
+    exclude group: "com.tigervnc", module: "tigervnc"
+    exclude group: "chromium", module: "chromium"
+    exclude group: "chromium_project", module: "chromium"
+    exclude group: "selenium", module: "selenium"
+}
+
 repositories {
     mavenCentral()
     mavenLocal()
@@ -17,7 +27,6 @@ buildscript {
             exclude group: "gradle", module: "gradle"
             exclude group: "serenity", module: "serenity"
         }
-        classpath "net.serenity-bdd:serenity-single-page-report:4.2.30"
         classpath "net.serenity-bdd:serenity-single-page-report:4.2.30"
         classpath "org.owasp:dependency-check-gradle:9.0.9"
 
@@ -71,18 +80,26 @@ dependencies {
         testImplementation "net.java.dev.jna:jna:5.13.0"
         testImplementation "net.java.dev.jna:jna-platform:5.13.0"
         //SikuliX
-        implementation("com.sikulix:sikulix2tigervnc:1.1.4") {
-            exclude group: "com.tigervnc", module: "tigervnc"
-        }
-        implementation "com.sikulix:sikulixapi:2.0.5"
-        //implementation("com.sikulix:sikulixapi:2.0.5") {
+        //implementation("com.sikulix:sikulix2tigervnc:1.1.4") {
         //    exclude group: "com.tigervnc", module: "tigervnc"
         //}
-
-        // log4j-core para impresion de logs
-        implementation("org.apache.logging.log4j:log4j-core:2.25.2") {
+        implementation("com.sikulix:sikulixapi:2.0.5") {
+            exclude group: "com.lowagie", module: "itext"
+            exclude group: "junit", module: "junit"
             exclude group: "log4j", module: "log4j"
+            exclude group: "tigervnc", module: "tigervnc"
+
         }
+
+        // iText moderno
+        implementation("com.itextpdf:itext7-core:7.1.0")
+
+        // log4j-core solventa
+        implementation("org.apache.logging.log4j:log4j-core:2.25.2"){
+            //exclude group: "log4j", module: "log4j"
+        }
+
+        implementation("junit:junit:4.13.2")
 
 
     }

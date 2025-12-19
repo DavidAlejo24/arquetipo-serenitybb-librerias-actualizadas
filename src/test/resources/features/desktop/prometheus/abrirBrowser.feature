@@ -1,4 +1,4 @@
-Feature: Search by keyword
+Feature: Testing Sikulixs to Prometheus
 
   @prometheus
   Scenario: Open browser and go to Prometheus website
