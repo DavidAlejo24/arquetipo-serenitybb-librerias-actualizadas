@@ -21,7 +21,7 @@ import static io.cucumber.junit.platform.engine.Constants.PLUGIN_PROPERTY_NAME;
 // 👇 Aquí defines el tag que quieres ejecutar
 @ConfigurationParameter(
         key = FILTER_TAGS_PROPERTY_NAME,
-        value = "@loginCorrecto"   // Cambia @smoke por el tag que quieras
+        value = "@loginCorrecto or @prometheus"   // Cambia @smoke por el tag que quieras
 )
 public class CucumberTestSuite {
     private static final Logger logger = LoggerFactory.getLogger(CucumberTestSuite.class);

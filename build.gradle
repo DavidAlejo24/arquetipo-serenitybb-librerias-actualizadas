@@ -1,13 +1,53 @@
 defaultTasks 'clean', 'test', 'aggregate'
 
 configurations.all {
+    //Sikulix
     exclude group: 'com.tigervnc', module: 'tigervnc'
+    //log4j
     exclude group: "log4j", module: "log4j"
-    //exclude group: "sikulix", module: "sikulix2tigervnc"
-    exclude group: "com.tigervnc", module: "tigervnc"
+    //gradle plugin
+    exclude group: "serenity", module: "serenity"
+    exclude group: "gradle", module: "gradle"
+    //selenium-chromium-driver-4.38.0
     exclude group: "chromium", module: "chromium"
     exclude group: "chromium_project", module: "chromium"
     exclude group: "selenium", module: "selenium"
+    //itext
+    //exclude group: "", module: ""
+    exclude group: "itextpdf", module: "itext"
+    //xmlgraphics
+    exclude group: "apache", module: "xmlgraphics_commons"
+    //netty-transport
+    exclude group: "netty", module: "netty"
+    //pip
+    exclude group: "pypa", module: "pip"
+    //setuptools
+    exclude group: "python", module: "setuptools"
+    //lept4j
+    exclude group: "leptonica", module: "leptonica"
+    //ant-1.9.7.jar
+    exclude group: "apache", module: "ant"
+    //angus-activation-2.0.1.jar
+    exclude group: "eclipse", module: "jakarta_mail"
+    //bcprov-jdk15on-1.62
+    exclude group: "bouncycastle", module: "bouncy_castle_for_java"
+    exclude group: "org.bouncycastle", module: "bcprov-jdk15on"
+    exclude group: "org.bouncycastle", module: "bcpkix-jdk15on"
+    exclude group: "org.bouncycastle", module: "bcpg-jdk15on"
+    exclude group: "org.bouncycastle", module: "bcmail-jdk15on"
+    exclude group: "org.bouncycastle", module: "bcutil-jdk15on"
+    //JLine 2.14.5
+    exclude group: "jline", module: "jline"
+    //Apache PDFBox 2.0.21
+    exclude group: "org.apache.pdfbox", module: "pdfbox-tools"
+    exclude group: "org.apache.pdfbox", module: "pdfbox"
+    //Bootstrap 3.4.1 (JavaScript)
+    exclude group: "org.webjars", module: "bootstrap"
+    //Apache PDFBox 2.0.21
+    exclude group: "org.apache.pdfbox", module: "pdfbox-tools"
+    exclude group: "org.apache.pdfbox", module: "pdfbox"
+    // Excluir Bootstrap 3.4.1 (JavaScript)
+    exclude group: "org.webjars", module: "bootstrap"
 }
 
 repositories {
@@ -84,11 +124,6 @@ dependencies {
         //    exclude group: "com.tigervnc", module: "tigervnc"
         //}
         implementation("com.sikulix:sikulixapi:2.0.5") {
-            exclude group: "com.lowagie", module: "itext"
-            exclude group: "junit", module: "junit"
-            exclude group: "log4j", module: "log4j"
-            exclude group: "tigervnc", module: "tigervnc"
-
         }
 
         // iText moderno
