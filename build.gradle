@@ -1,8 +1,15 @@
 defaultTasks 'clean', 'test', 'aggregate'
 
+// Muestra la versión de Gradle al inicio de la compilación
+println "------------------------------------------------------------"
+println "Compilando con Gradle versión: ${GradleVersion.current().version}"
+println "Java detectado por Gradle: ${System.getProperty('java.version')}"
+println "------------------------------------------------------------"
+
 configurations.all {
     //Sikulix
-    exclude group: 'com.tigervnc', module: 'tigervnc'
+    //exclude group: 'com.tigervnc', module: 'tigervnc'
+    exclude group: 'com.sikulix', module: 'sikulix2tigervnc'
     //log4j
     exclude group: "log4j", module: "log4j"
     //gradle plugin
@@ -13,7 +20,6 @@ configurations.all {
     exclude group: "chromium_project", module: "chromium"
     exclude group: "selenium", module: "selenium"
     //itext
-    //exclude group: "", module: ""
     exclude group: "itextpdf", module: "itext"
     //xmlgraphics
     exclude group: "apache", module: "xmlgraphics_commons"
@@ -127,7 +133,7 @@ dependencies {
         }
 
         // iText moderno
-        implementation("com.itextpdf:itext7-core:7.1.0")
+        //implementation("com.itextpdf:itext7-core:7.1.0")
 
         // log4j-core solventa
         implementation("org.apache.logging.log4j:log4j-core:2.25.2"){
@@ -156,6 +162,8 @@ test {
 serenity {
     reports = ["single-page-html"]
 }
+
+
 gradle.startParameter.continueOnFailure = true
 
 test.finalizedBy(aggregate, reports)

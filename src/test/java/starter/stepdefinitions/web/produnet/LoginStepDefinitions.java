@@ -14,13 +14,17 @@ import tasks.web.produnet.RevisarRespuesta;
 import static net.serenitybdd.screenplay.GivenWhenThen.when;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import io.cucumber.java.Before;
+
 
 public class LoginStepDefinitions {
 
     @Before
-    public void setTheStage() {
-        OnStage.setTheStage(new OnlineCast());
-    }
+    public void setTheStage() {OnStage.setTheStage(new OnlineCast());}
+
+
 
     @Dado("que el {actor} abre la Produnet web")
     public void clienteAbreProdunetWeb(Actor cliente) {
