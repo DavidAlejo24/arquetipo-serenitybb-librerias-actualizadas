@@ -13,12 +13,19 @@ configurations.all {
     //log4j
     exclude group: "log4j", module: "log4j"
     //gradle plugin
-    exclude group: "serenity", module: "serenity"
-    exclude group: "gradle", module: "gradle"
+    //exclude group: "serenity", module: "serenity"
+    //exclude group: "gradle", module: "gradle"
+    //exclude group: "net.serenity-bdd", module: "serenity-gradle-plugin"
+    exclude group: "org.gradle", module: "gradle"
+    exclude group: "net.serenity-bdd", module: "serenity"
+
+
     //selenium-chromium-driver-4.38.0
-    exclude group: "chromium", module: "chromium"
-    exclude group: "chromium_project", module: "chromium"
-    exclude group: "selenium", module: "selenium"
+    //exclude group: "chromium", module: "chromium"
+    //exclude group: "chromium_project", module: "chromium"
+    //exclude group: "selenium", module: "selenium"
+    //exclude group: "org.seleniumhq.selenium", module: "selenium-chromium-driver" //Necesario para compilar
+
     //itext
     exclude group: "itextpdf", module: "itext"
     //xmlgraphics
@@ -70,8 +77,11 @@ buildscript {
     }
     dependencies {
         classpath("net.serenity-bdd:serenity-gradle-plugin:4.3.2") {
-            exclude group: "gradle", module: "gradle"
-            exclude group: "serenity", module: "serenity"
+            //exclude group: "gradle", module: "gradle"
+            //exclude group: "serenity", module: "serenity"
+            exclude group: "org.gradle", module: "gradle"
+            exclude group: "net.serenity-bdd", module: "serenity"
+
         }
         classpath "net.serenity-bdd:serenity-single-page-report:4.2.30"
         classpath "org.owasp:dependency-check-gradle:9.0.9"
