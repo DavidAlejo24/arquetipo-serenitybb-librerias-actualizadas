@@ -1,3 +1,4 @@
+@all
 Feature: Search by keyword
 
   @green

@@ -1,3 +1,4 @@
+@all
 Feature: Testing Sikulixs to Prometheus
 
   @prometheus

@@ -1,4 +1,5 @@
 # language: es
+@all
 Característica: Login - Produnet
   Como cliente de Produnet
   Quiero ingresar a la banca web

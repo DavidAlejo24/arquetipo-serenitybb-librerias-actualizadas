@@ -13,9 +13,7 @@ configurations.all {
     //log4j
     exclude group: "log4j", module: "log4j"
     //gradle plugin
-    //exclude group: "serenity", module: "serenity"
-    //exclude group: "gradle", module: "gradle"
-    //exclude group: "net.serenity-bdd", module: "serenity-gradle-plugin"
+    //exclude group: "net.serenity-bdd", module: "serenity-gradle-plugin" //Necesario para compilar
     exclude group: "org.gradle", module: "gradle"
     exclude group: "net.serenity-bdd", module: "serenity"
 
@@ -27,21 +25,21 @@ configurations.all {
     //exclude group: "org.seleniumhq.selenium", module: "selenium-chromium-driver" //Necesario para compilar
 
     //itext
-    exclude group: "itextpdf", module: "itext"
+    exclude group: "com.lowagie", module: "itext"
     //xmlgraphics
-    exclude group: "apache", module: "xmlgraphics_commons"
+    exclude group: "org.apache.xmlgraphics", module: "xmlgraphics_commons"
     //netty-transport
-    exclude group: "netty", module: "netty"
+    exclude group: "io.netty", module: "netty"
     //pip
-    exclude group: "pypa", module: "pip"
+    exclude group: "org.python", module: "jython-slim"
     //setuptools
     exclude group: "python", module: "setuptools"
     //lept4j
-    exclude group: "leptonica", module: "leptonica"
+    exclude group: "net.sourceforge.lept4j", module: "lept4j"
     //ant-1.9.7.jar
-    exclude group: "apache", module: "ant"
+    exclude group: "org.apache.ant", module: "ant"
     //angus-activation-2.0.1.jar
-    exclude group: "eclipse", module: "jakarta_mail"
+    exclude group: "org.eclipse.angus", module: "angus-activation"
     //bcprov-jdk15on-1.62
     exclude group: "bouncycastle", module: "bouncy_castle_for_java"
     exclude group: "org.bouncycastle", module: "bcprov-jdk15on"
@@ -55,12 +53,16 @@ configurations.all {
     exclude group: "org.apache.pdfbox", module: "pdfbox-tools"
     exclude group: "org.apache.pdfbox", module: "pdfbox"
     //Bootstrap 3.4.1 (JavaScript)
-    exclude group: "org.webjars", module: "bootstrap"
+    exclude group: "net.serenity-bdd", module: "serenity-report-resources" //No se recomienda excluir
     //Apache PDFBox 2.0.21
     exclude group: "org.apache.pdfbox", module: "pdfbox-tools"
     exclude group: "org.apache.pdfbox", module: "pdfbox"
     // Excluir Bootstrap 3.4.1 (JavaScript)
     exclude group: "org.webjars", module: "bootstrap"
+    //serenity-junit-4.3.2
+    exclude group: "net.serenity-bdd", module: "serenity-junit"
+    //serenity-core-4.3.2 - NECESARIA
+    //exclude group: "net.serenity-bdd", module: "serenity-core"
 }
 
 repositories {
@@ -79,8 +81,8 @@ buildscript {
         classpath("net.serenity-bdd:serenity-gradle-plugin:4.3.2") {
             //exclude group: "gradle", module: "gradle"
             //exclude group: "serenity", module: "serenity"
-            exclude group: "org.gradle", module: "gradle"
-            exclude group: "net.serenity-bdd", module: "serenity"
+            //exclude group: "org.gradle", module: "gradle"
+            //exclude group: "net.serenity-bdd", module: "serenity"
 
         }
         classpath "net.serenity-bdd:serenity-single-page-report:4.2.30"
