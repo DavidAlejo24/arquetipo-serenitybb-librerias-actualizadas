@@ -27,7 +27,7 @@ configurations.all {
     //itext
     exclude group: "com.lowagie", module: "itext"
     //xmlgraphics
-    exclude group: "org.apache.xmlgraphics", module: "xmlgraphics_commons"
+    exclude group: "org.apache.xmlgraphics", module: "xmlgraphics-commons"
     //netty-transport
     exclude group: "io.netty", module: "netty"
     //pip
@@ -122,8 +122,8 @@ ext {
 
 dependencies {
     dependencies {
-        implementation "net.serenity-bdd:serenity-core:${serenity_version}" //Si
-        implementation "net.serenity-bdd:serenity-cucumber:${serenity_version}" //Si
+        implementation "net.serenity-bdd:serenity-core:${serenity_version}" //Necesaria para compilar
+        implementation "net.serenity-bdd:serenity-cucumber:${serenity_version}" 
         implementation "net.serenity-bdd:serenity-screenplay:${serenity_version}"
         implementation "net.serenity-bdd:serenity-screenplay-webdriver:${serenity_version}"
         implementation "net.serenity-bdd:serenity-ensure:${serenity_version}"
