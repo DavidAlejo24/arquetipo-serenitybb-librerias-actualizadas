@@ -7,27 +7,38 @@ import io.cucumber.java.es.Entonces;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
+import net.serenitybdd.screenplay.rest.abilities.CallAnApi;
+import questions.produnet.CodigoDeRespuesta;
 import starter.navigation.NavegarHacia;
+import tasks.web.produnet.ConsultarAbilities;
 import tasks.web.produnet.IngresarCredenciales;
 import tasks.web.produnet.RevisarRespuesta;
 
+import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static net.serenitybdd.screenplay.GivenWhenThen.when;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
+import static org.hamcrest.Matchers.equalTo;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import io.cucumber.java.Before;
+
 
 
 public class LoginStepDefinitions {
+    //Actor cliente = Actor.named("David");
+    Actor cliente;
 
     @Before
-    public void setTheStage() {OnStage.setTheStage(new OnlineCast());}
+    public void setTheStage() {
+        OnStage.setTheStage(new OnlineCast());
+        //cliente().whoCan(CallAnApi.at("https://pokeapi.co/api/v2"));
+        cliente = Actor.named("David").whoCan(CallAnApi.at("https://pokeapi.co/api/v2"));
+
+    }
+
 
 
 
     @Dado("que el {actor} abre la Produnet web")
-    public void clienteAbreProdunetWeb(Actor cliente) {
+    public void clienteAbreProdunetWeb() {
         cliente.wasAbleTo(NavegarHacia.produnetLogin());
     }
 
@@ -35,8 +46,8 @@ public class LoginStepDefinitions {
     @Cuando("ingresa su usuario y contrasenia correctas")
     public void ingresa_su_usuario_y_contrasena_correctas() {
         when(theActorInTheSpotlight()).attemptsTo(
-                IngresarCredenciales.userCorrecto()
-                //IngresarCredenciales.pwdCorrecta()
+                IngresarCredenciales.userCorrecto(),
+                IngresarCredenciales.pwdCorrecta()
         );
     }
 
@@ -45,25 +56,25 @@ public class LoginStepDefinitions {
         // Implement validation logic for the token screen
         theActorInTheSpotlight().wasAbleTo(
                 RevisarRespuesta.token()
-                //RevisaRespuesta.usuarioIncorrecto()
-                //RevisaRespuesta.contraseniaIncorrecta()
         );
     }
 
     @Cuando("ingresa su usuario incorrecto")
     public void clienteIngresaUsuarioIncorrecto() {
         theActorInTheSpotlight().wasAbleTo(
-                IngresarCredenciales.userIncorrecto()
+                IngresarCredenciales.userIncorrecto(),
+                IngresarCredenciales.pwdCorrecta()
         );
     }
 
     @Entonces("valida se muestre un mensaje de error de usuario")
     public void clienteValidaErrorUsuario() {
-        // Implement validation logic for incorrect username error
-        System.out.println("Validating incorrect username error...");
+        theActorInTheSpotlight().wasAbleTo(
+                RevisarRespuesta.contraseniaIncorrecta()
+        );
     }
 
-    @Cuando("ingresa su contraseña incorrecta")
+    @Cuando("ingresa su contrasenia incorrecta")
     public void clienteIngresaContrasenaIncorrecta() {
         theActorInTheSpotlight().wasAbleTo(
                 IngresarCredenciales.userCorrecto(),
@@ -71,10 +82,31 @@ public class LoginStepDefinitions {
         );
     }
 
-    @Entonces("valida se muestre un mensaje de error de contraseña")
+    @Entonces("valida que se muestre un mensaje de error de contrasenia")
     public void clienteValidaErrorContrasena() {
-        // Implement validation logic for incorrect password error
-        System.out.println("Validating incorrect password error...");
+
+        theActorInTheSpotlight().wasAbleTo(
+                RevisarRespuesta.contraseniaCorrecta()
+        );
     }
+
+    //Exampe restAssured
+
+    @Cuando("consulta las habilidades de pokemon con limite y offset")
+    public void consultoAbilities() {
+        cliente.attemptsTo(
+                ConsultarAbilities.desde("/ability/?limit=20&offset=20")
+        );
+    }
+
+    @Entonces("el servicio responde exitosamente")
+    public void validaCodigoRespuesta() {
+        cliente.should(
+                seeThat("El código de respuesta",
+                        CodigoDeRespuesta.es(),
+                        equalTo(200))
+        );
+    }
+
 
 }

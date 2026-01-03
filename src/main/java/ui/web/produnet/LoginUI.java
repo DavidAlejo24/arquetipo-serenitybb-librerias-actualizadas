@@ -22,15 +22,17 @@ public class LoginUI extends PageObject {
 
 
     //Pagina de Token
-    public static final Target LBL_INGRESAR_CODIGO = Target.the("Label Ingresa el código temporal").locatedBy("//p[@id='lblCodigoSeguridadTemporal']").waitingForNoMoreThan(Duration.ofSeconds(10));
-    public static final Target BTN_ACEPTAR_TOKEN = Target.the("botón aceptar segundo factor")
-            .locatedBy("//button[@id='btnAceptarValidarSegundoFactor']");
+    //public static final Target LBL_INGRESAR_CODIGO = Target.the("Label Ingresa el código temporal").locatedBy("//p[@id='lblCodigoSeguridadTemporal']").waitingForNoMoreThan(Duration.ofSeconds(10));
+    public static final Target LBL_INGRESAR_CODIGO = Target.the("Label Ingresa el código temporal").locatedBy("//h4[contains(text(),'Código de seguridad')]").waitingForNoMoreThan(Duration.ofSeconds(10));
+    public static final Target BTN_ACEPTAR_TOKEN = Target.the("botón aceptar segundo factor").locatedBy("//button[@id='btnAceptarValidarSegundoFactor']");
 
-    public static final Target BTN_CANCELAR_TOKEN = Target.the("botón cancelar segundo factor")
-            .locatedBy("//a[@id='btnAtras']");
+    public static final Target BTN_CANCELAR_TOKEN = Target.the("botón cancelar segundo factor").locatedBy("//a[@id='btnAtras']");
 
-    public static final Target LNK_SOLICITAR_CODIGO = Target.the("enlace solicitar código temporal")
-            .locatedBy("//a[@id='idIngresoAlternativo']");
+    public static final Target LNK_SOLICITAR_CODIGO = Target.the("enlace solicitar código temporal").locatedBy("//a[@id='idIngresoAlternativo']");
+
+    //Mensajes de error Usuario
+    public static final Target MODAL_ERROR_USUARIO = Target.the("Modal Error User Incorrecto").locatedBy("//div[@id='divMensajeAlerta']").waitingForNoMoreThan(Duration.ofSeconds(10));
+    public static final Target MODAL_ERROR_PASSWORD = Target.the("Modal Error Password Incorrecta").locatedBy("//div[@id='divMensajeAlerta']//p[contains(text(),'La información ingresada')]").waitingForNoMoreThan(Duration.ofSeconds(10));
 
 
 
