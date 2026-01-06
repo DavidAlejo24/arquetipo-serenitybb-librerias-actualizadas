@@ -1,6 +1,7 @@
 package starter.stepdefinitions.desktop.prometheus;
 
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import net.serenitybdd.screenplay.Actor;
 import tasks.desktop.prometheus.AbrirBrowser;
 
@@ -20,13 +21,10 @@ public class PrometheusStepDefinitions {
                 LookForInformation.about(term)
         );
     }
+*/
+    @Then("valida que el browser este abierto en la pagina deseada")
+    public void validaBrowserEsteAbiertoEnPaginaDeseada(){
 
-    @Then("{actor} should see information about {string}")
-    public void should_see_information_about(Actor actor, String term) throws AWTException, IOException {
-        actor.attemptsTo(
-                Ensure.that(TheWebPage.title()).containsIgnoringCase(term)
-        );
     }
-    */
 
 }
