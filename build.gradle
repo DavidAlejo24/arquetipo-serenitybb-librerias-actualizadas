@@ -67,14 +67,14 @@ configurations.all {
 
 repositories {
     mavenCentral()
-    mavenLocal()
+    //mavenLocal()
 }
 
 
 buildscript {
     repositories {
         maven {
-            url "https://plugins.gradle.org/m2/"
+            url = "https://plugins.gradle.org/m2/"
         }
     }
     dependencies {
@@ -85,8 +85,8 @@ buildscript {
             //exclude group: "net.serenity-bdd", module: "serenity"
 
         }
-        classpath "net.serenity-bdd:serenity-single-page-report:4.2.30"
-        classpath "org.owasp:dependency-check-gradle:9.0.9"
+        classpath("net.serenity-bdd:serenity-single-page-report:4.2.30")
+        classpath("org.owasp:dependency-check-gradle:9.0.9")
 
     }
 
@@ -101,13 +101,8 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: "net.serenity-bdd.serenity-gradle-plugin"
-apply plugin: 'org.owasp.dependencycheck'
-//apply plugin: 'org-owasp.dependencycheck'
-//apply plugin: 'org.owasp.dependencycheck'
-//apply plugin: "org.owasp-dependencycheck"
 
-//sourceCompatibility = 16
-//targetCompatibility = 16
+
 
 ext {
     serenity_version = '4.3.2'
@@ -139,44 +134,40 @@ dependencies {
         testImplementation "net.java.dev.jna:jna:5.13.0"
         testImplementation "net.java.dev.jna:jna-platform:5.13.0"
         //SikuliX
-        //implementation("com.sikulix:sikulix2tigervnc:1.1.4") {
-        //    exclude group: "com.tigervnc", module: "tigervnc"
-        //}
         implementation("com.sikulix:sikulixapi:2.0.5") {
         }
-
-        // iText moderno
-        //implementation("com.itextpdf:itext7-core:7.1.0")
-
         // log4j-core solventa
         implementation("org.apache.logging.log4j:log4j-core:2.25.2"){
             //exclude group: "log4j", module: "log4j"
         }
-
         implementation("junit:junit:4.13.2")
+        //Appium libraries
+        //implementation("io.appium:java-client:10.0.0")
+        //implementation("org.testng:testng:7.12.0")
+        //testImplementation "net.serenity-bdd:serenity-appium:3.6.12"
 
 
-    }
-}
 
-dependencyCheck {
-    failBuildOnCVSS = 7       // Falla si hay vulnerabilidades críticas (CVSS >= 7)
-    suppressionFile = 'dependency-check-suppressions.xml'
-    analyzers {
-        assemblyEnabled = false
     }
 }
 
 
 test {
     useJUnitPlatform()
+    testLogging.showStandardStreams = true
+    systemProperties System.getProperties()
+    //systemProperty = "file.encoding", "UTF-8"
 }
 
 serenity {
+    // Specify the root package of any JUnit acceptance tests to appear in the Serenity report
+    testRoot = "starter"
+    // Specify the root directory of any Cucumber feature files
+    requirementsDir = "src/test/resources/features"
     reports = ["single-page-html"]
+
 }
 
 
 gradle.startParameter.continueOnFailure = true
-
 test.finalizedBy(aggregate, reports)
